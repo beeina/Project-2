@@ -4,13 +4,23 @@
   <thead>
     <tr>
       <th>Habit</th>
-      <th>Start<br />Date</th>
-      <th>Target<br />Date</th>
+      <th>Start Date</th>
+      <th>Target Date</th>
       <th>Progress</th>
       <th></th>
     </tr>
   </thead>
-  
+  <tbody>
+    <% habits.forEach(function(h) { %>
+    <tr>
+      <td><%= h.title %></td>
+      <td><%= h.startDate %></td>
+      <td><%= h.targetDate %></td>
+      <td><%= h.progress %></td>
+      <td><a href="/habits/<%= h._id %>">DETAILS</a></td>
+    </tr>
+    <% }); %>
+  </tbody>
 </table>
 
 <%- include('../partials/footer') %>

@@ -6,12 +6,8 @@ const habitSchema = new mongoose.Schema(
     title: {
       type: String,
     },
-    startDate: {
-      type: Number,
-    },
-    targetDate: {
-      type: Number,
-    },
+    startDate:Date,
+    targetDate: Date,
     progress: {
       type: Number,
     },

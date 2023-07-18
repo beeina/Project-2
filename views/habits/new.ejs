@@ -1,5 +1,21 @@
 <%- include('../partials/header') %>
 
-
+<form id="new-form" action="/habits" method="POST">
+  <label>Title: </label>
+  <input type="text" name="title" /><br />
+  <label>Start Date: </label>
+  <input type="datetime-local" id="start-time" name="startDate" /><br />
+  <label>Target Date: </label>
+  <input type="datetime-local" id="target-time" name="targetDate" /><br />
+  <label>Progress: </label>
+  <select name="progress">
+    <option value="0">0%</option>
+    <option value="25">25%</option>
+    <option value="50">50%</option>
+    <option value="75">75%</option>
+    <option value="100">100%</option></select
+  ><br />
+  <input type="submit" value="Add Habit" />
+</form>
 
 <%- include('../partials/footer') %>
