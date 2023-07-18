@@ -1,4 +1,5 @@
 const Habit = require("../models/habit");
+const moment = require("moment");
 
 module.exports = {
   index,
@@ -23,11 +24,21 @@ async function add(req, res) {
 }
 
 async function index(req, res) {
-  const habits = await Habit.find({});
+  let foundhabits = await Habit.find({});
+  let habits = [];
+  foundhabits.forEach(function (h) {
+    h.formattedStartDate = moment(h.startDate).format("LL");
+    h.formattedTargetDate = moment(h.targetDate).format('LL');
+    // console.log(startDate);
+    habits.push(h);
+  });
+
   res.render("habits/index", { title: "All Habits", habits });
 }
 
 async function show(req, res) {
   const habit = await Habit.findById(req.params.id);
+  habit.formattedStartDate = moment(habit.startDate).format("LL");
+  habit.formattedTargetDate = moment(habit.targetDate).format('LL');
   res.render("habits/show", { title: "Habit Detail", habit });
 }

@@ -14,8 +14,8 @@
     <% habits.forEach(function(h) { %>
     <tr>
       <td><%= h.title %></td>
-      <td><%= h.startDate %></td>
-      <td><%= h.targetDate %></td>
+      <td><%= h.formattedStartDate %></td>
+      <td><%= h.formattedTargetDate %></td>
       <td><%= h.progress %></td>
       <td><a href="/habits/<%= h._id %>">DETAILS</a></td>
     </tr>
