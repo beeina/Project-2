@@ -31,6 +31,7 @@
 
 <% if (habit.goal.length) { %>
   <table>
+
     <thead>
       <tr>
       
@@ -39,21 +40,18 @@
         <th></th>
       </tr>
     </thead>
+
     <tbody>
+
       <% let total = 0 %>
       <% habit.goal.forEach(function(g) { %>
-     
         <tr>
-       
           <td><%= g.goalDescription %></td>
-      
           <td><%= g.progress %></td>
           <td>
-        
-              <!-- <form action="/goals/<%= g._id %>?_method=DELETE" method="POST"> -->
-                <!-- <button type="submit">X</button> -->
-              <!-- </form> -->
-          
+              <form action="/goals/<%= habit._id %>/<%= g._id %>?_method=DELETE" method="POST">
+                <button type="submit">X</button>
+              </form>
           </td>
         </tr>
       <% }); %>
