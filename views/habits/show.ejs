@@ -1,15 +1,69 @@
 <%- include('../partials/header') %>
 
 <section id="show-page">
-    <div>Title: </div>
-    <div><%= habit.title %></div>
-    <div>Start Date: </div>
-    <div><%= habit.formattedStartDate %></div>
-    <div>Target Date: </div>
-    <div><%= habit.formattedTargetDate %></div>
-    <div>Progress: </div>
-    <div><%= habit.progress %></div>
+    <td class="habit-user"><img alt="avatar" src="<%= habit.userAvatar %>" referrerpolicy="no-referrer" ><%= habit.userName %></td>
+    <div><strong>Title: </strong>
+      <%= habit.title %></div>
+    <div><strong>Start Date: </strong>
+      <%= habit.formattedStartDate %></div>
+    <div><strong>Target Date: </strong>
+      <%= habit.formattedTargetDate %></div>
+    <div><strong>Progress: </strong>
+      <%= habit.progress %></div>
 
+    <br><br><h2>Goals</h2>
+<form id="add-goal-form" method="POST"
+  action="/habits/<%= habit._id %>/goal">
 
+  <label><strong>Goal Description: </strong></label>
+  <input type="text" name="goalDescription"/><br>
+
+  <label><strong>Progress: </strong></label>
+  <select name="progress">
+      <option value="0">0%</option>
+      <option value="25">25%</option>
+      <option value="50">50%</option>
+      <option value="75">75%</option>
+      <option value="100">100%</option></select  
+  </select><br><br>
+  <input type="submit" value="Add Goal">
+</form>
+
+<% if (habit.goal.length) { %>
+  <table>
+    <thead>
+      <tr>
+      
+        <th>Goal</th>
+        <th>Progress</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% let total = 0 %>
+      <% habit.goal.forEach(function(g) { %>
+     
+        <tr>
+       
+          <td><%= g.goalDescription %></td>
+      
+          <td><%= g.progress %></td>
+          <td>
+        
+              <!-- <form action="/goals/<%= g._id %>?_method=DELETE" method="POST"> -->
+                <!-- <button type="submit">X</button> -->
+              <!-- </form> -->
+          
+          </td>
+        </tr>
+      <% }); %>
+    
+    </tbody>
+  </table>
+<% } else { %>
+  <h5>No Goals Yet</h5>
+<% } %>
+  
 <%- include('../partials/footer') %>
+
 

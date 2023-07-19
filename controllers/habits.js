@@ -1,4 +1,5 @@
 const Habit = require("../models/habit");
+const Goal = require("../models/goal");
 const moment = require("moment");
 
 module.exports = {
@@ -14,6 +15,9 @@ function newHabit(req, res) {
 
 async function add(req, res) {
   try {
+    req.body.user = req.user._id;
+    req.body.userName = req.user.name;
+    req.body.userAvatar = req.user.avatar;
     console.log(req.body);
     await Habit.create(req.body);
     res.redirect("/habits");
@@ -28,7 +32,7 @@ async function index(req, res) {
   let habits = [];
   foundhabits.forEach(function (h) {
     h.formattedStartDate = moment(h.startDate).format("LL");
-    h.formattedTargetDate = moment(h.targetDate).format('LL');
+    h.formattedTargetDate = moment(h.targetDate).format("LL");
     // console.log(startDate);
     habits.push(h);
   });
@@ -37,8 +41,12 @@ async function index(req, res) {
 }
 
 async function show(req, res) {
-  const habit = await Habit.findById(req.params.id);
+  const habit = await Habit.findById(req.params.id).populate("goal");
   habit.formattedStartDate = moment(habit.startDate).format("LL");
-  habit.formattedTargetDate = moment(habit.targetDate).format('LL');
-  res.render("habits/show", { title: "Habit Detail", habit });
+  habit.formattedTargetDate = moment(habit.targetDate).format("LL");
+  // console.log(habit);
+  const goals = await Goal.find({ _id: { $nin: habit.goal } });
+  // console.log("goals");
+  // console.log(goals);
+  res.render("habits/show", { title: "Habit Detail", habit, goals });
 }

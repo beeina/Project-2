@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+
 const habitSchema = new mongoose.Schema(
   {
     title: {
@@ -11,8 +12,18 @@ const habitSchema = new mongoose.Schema(
     progress: {
       type: Number,
     },
-  },
-  {
+    goal: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Goal'
+    }],
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    },
+    userName: String,
+    userAvatar: String
+  }, {
     timestamps: true,
   }
 );
