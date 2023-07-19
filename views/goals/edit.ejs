@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+
+<form
+  action="/goals/update/<%= habit._id %>/<%= goal._id %>?_method=PUT"
+  method="POST"
+>
+  <label>Goal: </label>
+  <input name="goalDescription" value="<%=goal.goalDescription%>" /><br />
+  <label>Progress: </label>
+  <select name="progress">
+    <option value="<%= goal.progress %>" selected><%= goal.progress %></option>
+    <option value="0">0%</option>
+    <option value="25">25%</option>
+    <option value="50">50%</option>
+    <option value="75">75%</option>
+    <option value="100">100%</option></select
+  ><br />
+  <input type="submit" value="Update Goal" />
+</form>
+
+<%- include('../partials/footer') %>
