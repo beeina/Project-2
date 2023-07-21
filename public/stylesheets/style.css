@@ -182,6 +182,17 @@ hr {
   height: 18px;
 }
 .home-img {
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+.img-container {
+  display: table;
+  height: 800px;
+  width: 800px;
+}
+.img-content {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
 }

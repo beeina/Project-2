@@ -18,7 +18,7 @@ async function add(req, res) {
     req.body.user = req.user._id;
     req.body.userName = req.user.name;
     req.body.userAvatar = req.user.avatar;
-    console.log(req.body);
+   
     await Habit.create(req.body);
     res.redirect("/habits");
   } catch (err) {
@@ -33,7 +33,7 @@ async function index(req, res) {
   foundhabits.forEach(function (h) {
     h.formattedStartDate = moment(h.startDate).format("LL");
     h.formattedTargetDate = moment(h.targetDate).format("LL");
-    // console.log(startDate);
+    
     habits.push(h);
   });
 
@@ -44,9 +44,8 @@ async function show(req, res) {
   const habit = await Habit.findById(req.params.id).populate("goal");
   habit.formattedStartDate = moment(habit.startDate).format("LL");
   habit.formattedTargetDate = moment(habit.targetDate).format("LL");
-  // console.log(habit);
+
   const goals = await Goal.find({ _id: { $nin: habit.goal } });
-  // console.log("goals");
-  // console.log(goals);
-  res.render("habits/show", { title: "Habit Detail", habit, goals });
+  
+  res.render("habits/show", { title: "Habit Details", habit, goals });
 }
