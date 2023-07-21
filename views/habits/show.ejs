@@ -11,12 +11,12 @@
     <div><strong>Progress: </strong>
       <%= habit.progress %></div>
 
-    <br><br><h2>Goals</h2>
-<form id="add-goal-form" method="POST"
+    <br><br><h2>Goal</h2>
+<form id="add-goal-form" class="add-edit-form" method="POST"
   action="/habits/<%= habit._id %>/goal">
 
   <label><strong>Goal Description: </strong></label>
-  <input type="text" name="goalDescription"/><br>
+  <input type="text" name="goalDescription"/>
 
   <label><strong>Progress: </strong></label>
   <select name="progress">
@@ -38,6 +38,7 @@
         <th>Goal</th>
         <th>Progress</th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
 
@@ -54,8 +55,8 @@
               </form>
           </td>
           <td>
-            <a href="/goals/edit/<%= habit._id %>/<%= g._id %>" class="nav-link">EDIT GOAL</a>
-      
+            <button onclick="location.href='/goals/edit/<%= habit._id %>/<%= g._id %>'" type="button">
+              EDIT GOAL</button>
           </td>
           <br>
         </tr>

@@ -6,10 +6,7 @@ const passport = require("passport");
 router.get("/", function (req, res, next) {
   res.render("index", { title: "Home Page" });
 });
-// This app has no "home" page, but your projects should 😀
-router.get("/", function (req, res, next) {
-  res.redirect("/habits");
-});
+
 // Google OAuth Route login route
 router.get(
   "/auth/google",

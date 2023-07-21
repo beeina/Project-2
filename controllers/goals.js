@@ -6,7 +6,6 @@ module.exports = {
   delete: deleteGoal,
   edit,
   update,
-  // update
 };
 
 async function update(req, res) {

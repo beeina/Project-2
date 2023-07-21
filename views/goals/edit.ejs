@@ -1,11 +1,13 @@
 <%- include('../partials/header') %>
 
 <form
+  class="add-edit-form"
+  id="edit-form"
   action="/goals/update/<%= habit._id %>/<%= goal._id %>?_method=PUT"
   method="POST"
 >
   <label>Goal: </label>
-  <input name="goalDescription" value="<%=goal.goalDescription%>" /><br />
+  <input name="goalDescription" value="<%=goal.goalDescription%>" />
   <label>Progress: </label>
   <select name="progress">
     <option value="<%= goal.progress %>" selected><%= goal.progress %></option>
