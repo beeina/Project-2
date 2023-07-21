@@ -49,7 +49,7 @@ I am not a disciplined person. As a mom, my days never look the same due to lack
 
 ## Next Steps: 
 
-- Add a calendar for goal track. 
+- Add a calendar to track goal. 
 
 - Sign up through different email can be done.
 
