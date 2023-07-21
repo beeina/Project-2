@@ -1,6 +1,6 @@
 # Habit Tracker
 
-Good habits can be hard to adopt and even harder to keep up. That’s where a habit tracker comes in. A habit tracker is a simple way to measure whether you have a habit or basically just recording the behavior you’re trying to change. People often use habit tracker to track exercise, taking medicine, cleaning, reading, and much more. Keeping a record of habit is important when trying to achieve a goal such as to stay motivated, keeps focus, or boosts confidence,
+Good habits can be hard to adopt and even harder to keep up. That’s where a habit tracker comes in. A habit tracker is a simple way to measure whether you have a habit or basically just recording the behavior you’re trying to change. People often use habit tracker to track exercise, taking medicine, cleaning, reading, and much more. Keeping a record of habit is important when trying to achieve a goal such as to stay motivated, keeps focus, or boosts confidence. 
 I am not a disciplined person. As a mom, my days never look the same due to lack of discipline and forming habits can seem impossible. That’s why I love tracking my habits in order to stay focused every day on achieving my goals. After having babies, I gained a lot of weight. So, in order to motivate myself to lose weight, I made a habit of exercising, drinking water, cutting sugary products, and eating healthy foods.
 
 ## Screenshots:
