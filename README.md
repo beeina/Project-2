@@ -38,7 +38,9 @@ I am not a disciplined person. As a mom, my days never look the same due to lack
 - [Imgur](https://imgur.com/)
 
 
-## Getting Started: How the app work 
+## Getting Started: How the app work
+
+[Heroku](https://secure-caverns-00990-84bdba097217.herokuapp.com/)
 
 [Trello Board](https://trello.com/b/5PMyu6jZ/project-2)
 
