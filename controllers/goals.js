@@ -8,22 +8,11 @@ module.exports = {
   update,
 };
 
-let gProgress;
-
-async function update(req, res) {
-  const goal = await Goal.findById(req.params.goalId);
-  const habit = await Habit.findById(req.params.habitId);
-  goal.goalDescription = req.body.goalDescription;
-  goal.progress = req.body.progress;
-  
-  await goal.save();
-  updateHabitForEditGoal(habit, goal.progress);
-  res.redirect(`/habits`);
-}
+let originalGoalProgress;
 
 async function deleteGoal(req, res) {
   const habit = await Habit.findById(req.params.habitId);
- 
+
   // Rogue user!
   if (!habit) return res.redirect("/habits");
   // Remove the goals using the remove method available on Mongoose arrays
@@ -38,21 +27,10 @@ async function create(req, res) {
   const habit = await Habit.findById(req.params.id);
 
   habit.goal.push(goal._id);
-  updateHabit(habit, goal.progress);
+  updateHabitForAddGoal(habit, goal.progress);
   res.redirect(`/habits/${habit._id}`);
 }
-
-async function edit(req, res) {
-  const goal = await Goal.findById(req.params.goalId);
-  const habit = await Habit.findById(req.params.habitId);
-
-  gProgress = goal.progress;
-  
-  // Render the comments/edit.ejs template, passing to it the comment
-  res.render("goals/edit", { title: "Edit Goal", goal: goal, habit: habit });
-}
-
-async function updateHabit(habit, goalProgress) {
+async function updateHabitForAddGoal(habit, goalProgress) {
   let totalProgress = habit.progress + goalProgress;
 
   habit.progress = totalProgress / habit.goal.length;
@@ -63,14 +41,35 @@ async function updateHabit(habit, goalProgress) {
     console.log(err);
   }
 }
+async function edit(req, res) {
+  const goal = await Goal.findById(req.params.goalId);
+  const habit = await Habit.findById(req.params.habitId);
 
-async function updateHabitForEditGoal(habit, goalProgress) {
-  
+  originalGoalProgress = goal.progress;
+
+  // Render the comments/edit.ejs template, passing to it the comment
+  res.render("goals/edit", { title: "Edit Goal", goal: goal, habit: habit });
+}
+
+async function update(req, res) {
+  const goal = await Goal.findById(req.params.goalId);
+  const habit = await Habit.findById(req.params.habitId);
+  goal.goalDescription = req.body.goalDescription;
+  goal.progress = req.body.progress;
+
+  await goal.save();
+  updateHabitForEditGoal(habit, goal.progress);
+  res.redirect(`/habits`);
+}
+
+async function updateHabitForEditGoal(habit, updatedGoalProgress) {
   let totalProgress =
-    habit.progress * habit.goal.length - gProgress + goalProgress;
+    habit.progress * habit.goal.length -
+    originalGoalProgress +
+    updatedGoalProgress;
 
   habit.progress = totalProgress / habit.goal.length;
-  
+
   try {
     await habit.save();
   } catch (err) {
